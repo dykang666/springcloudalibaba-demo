@@ -1,0 +1,9 @@
+spring:
+  application:
+  name: docker-compose-service2
+  profiles:
+    active: pro
+server:
+  port: 8089
+  servlet:
+    context-path: /docker-service2

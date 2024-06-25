@@ -1,0 +1,12 @@
+version: "2.2.2"
+services:
+  service-app1:
+    build: ./boot1
+    container_name: docker-service1
+    ports:
+      - "8088:8088"
+  service-app2:
+    build: ./boot2
+    container_name: docker-service2
+    ports:
+      - "8089:8089"

@@ -1,0 +1,85 @@
+spring:
+  datasource:
+     url: jdbc:mysql://127.0.0.1:3306/test_2?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+     username: root
+     password: 123456
+     driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: 123@#nacos
+        namespace: bfe78a48-837f-4943-8fa0-5111eab7d724
+    sentinel:
+      transport:
+        port: 8720 #跟sentinel控制台交流的端口,随意指定一个未使用的端口即可
+        dashboard: 127.0.0.1:9091
+#      datasource:   # 流控规则
+#        flow:
+#            nacos:
+#              server-addr: 127.0.0.1:8848
+#              #username: nacos
+#              #password: 123@#nacos
+#              data-id: customer-service-sentinel-flow-rules
+#              group-id: DEFAULT_GROUP
+#              data-type: json
+#              rule-type: flow
+#        degrade: # 降级规则
+#          nacos:
+#            server-addr: 127.0.0.1:8848
+#            #username: nacos
+#            #password: 123@#nacos
+#            data-id: customer-service-sentinel-degrade-rules
+#            group-id: DEFAULT_GROUP
+#            data-type: json
+#            rule-type: degrade
+    stream:
+      rocketmq:
+        bindings:
+          output1:
+            producer:
+              #sendType: Sync #同步发送
+              producerType:  Transaction  #Transaction #事务消息
+              group: tranGroup #生产组，重要
+              transactionListener: rocketMQTransactionListener #Spring Bean, 事务监听器，需要实现TransactionListener接口
+          input1:
+            consumer:
+              push:
+                orderly: true # 默认是并发消费，这里设置为顺序消费
+        binder:
+            #客户端接入点，必填  rocketMQ的连接地址，binder高度抽象
+          name-server: 127.0.0.1:9876
+          group: rocketmq-group
+      #bindings 具体生产消息、消费消息的桥梁
+      bindings:
+        #Produce Config
+#        output: # 查看org.springframework.cloud.stream.config.BindingProperties
+#           destination: test-topic #指定发送的topic
+#           content-type: application/json
+#           group: test-group
+#        #Consumer Config
+#        input:
+#          destination: test-topic
+#          content-type: application/json
+#          group: test-group
+        #自定义   producer config
+        output1:
+          destination: test-topic1 #指定发送的topic
+          content-type: application/json
+          group: test-group1
+        output2:
+          destination: test-topic2
+          contentType: text/plain
+          group: test-group2
+          # 自定义 consumer config
+        input1:
+          destination: test-topic1 #指定发送的topic
+          content-type: application/json
+          group: test-group1
+        input2:
+          destination: test-topic2
+          contentType: text/plain
+          group: test-group2
+
+

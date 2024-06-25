@@ -1,0 +1,12 @@
+spring:
+ application:
+    name: rocketmq-consumer-service
+ profiles:
+   active: dev
+server:
+  port: 8098
+logging:
+  file:
+    name: F:\DemoWorkSpace\springcloudalibaba\rockermq-consumer-service\src\main\logs\rockermq-consumer-service.log
+  level:
+    root: info

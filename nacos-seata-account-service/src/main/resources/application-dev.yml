@@ -1,0 +1,42 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        service-addr: 127.0.0.1:8848
+        username: nacos
+        password: 123@#nacos
+        namespace: a008c0da-b5d6-407d-afdb-d37072d5fdc9
+        service: seata-account-service
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/account?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+
+# seata
+seata:
+  enabled: true
+  #application-id: business-server
+  tx-service-group: my_test_tx_group # 事务群组（可以每个应用单独取名，也可以使用相同名字，独立起名需要配置nacos）
+  # 关闭自动代理
+  enable-auto-data-source-proxy: false
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: 123@#nacos
+      namespace: a008c0da-b5d6-407d-afdb-d37072d5fdc9
+      # 微服务必须在一个组，否则服务发现不了，但Seata-server 可以在不同的组中
+      group: SEATA_GROUP
+      dataId: "seataServer.properties"
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace: a008c0da-b5d6-407d-afdb-d37072d5fdc9
+      username: nacos
+      password: 123@#nacos
+      group: SEATA_GROUP
+      application: seata-server

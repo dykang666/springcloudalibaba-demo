@@ -1,0 +1,17 @@
+spring:
+  application:
+   name: seata-business-service
+  profiles:
+    active: dev
+server:
+  port: 9091
+  servlet:
+    context-path: /seata-business-service
+#feign超时配置
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 600000
+        readTimeout: 600000
+

@@ -1,0 +1,44 @@
+spring:
+  profiles:
+    active: dev
+  cloud:
+     nacos:
+       discovery:
+         service: customer-service
+       config:
+          enabled: true
+     sentinel:
+      eager: true
+
+server:
+  port: 8091
+  servlet:
+    context-path: /customer-service
+
+mybatis:
+  configuration:
+    ### 开启打印sql配置
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+# feign调用超时时间配置和日志
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 600000
+        readTimeout: 600000
+
+logging:
+  level:
+    com:
+      example:
+        customerservice: DEBUG
+#服务名称 默认的是轮询策略
+#provider:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #配置规则 随机
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #配置规则 轮询
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RetryRule #配置规则 重试
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule #配置规则 响应时间权重
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule #配置规则 最空闲连接策略
+

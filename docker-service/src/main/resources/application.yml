@@ -1,0 +1,9 @@
+spring:
+  application:
+   name: docker-service
+  profiles:
+    active: pro
+server:
+  port: 8088
+  servlet:
+    context-path: /docker-service

@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: nacos-service
+  cloud:
+     nacos:
+       config:
+         server-addr: 127.0.0.1:8848
+         enabled: true # 如果不想使用 Nacos 进行配置管理，设置为 false 即可
+         group: DEFAULT_GROUP # 组，默认为 DEFAULT_GROUP
+         username: nacos
+         password: 123@#nacos
+         file-extension: yaml
+         refresh-enabled: true
+  # SpringCloud 2021版本之后，需要用以下方式导入nacos的配置文件
+  config:
+    import:
+      - optional:nacos:nacos-service-dev.yaml
+  profiles:
+    active: dev
+#打开nacos日志 设置级别debug 建议初学者打开
+logging:
+  level:
+    com.alibaba.cloud.nacos.configdata: debug
+server:
+  port: 8097
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'

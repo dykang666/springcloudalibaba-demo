@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: seata-stock-service
+  profiles:
+    active: dev
+server:
+  port: 9093
+  servlet:
+    context-path: /seata-stock-service
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

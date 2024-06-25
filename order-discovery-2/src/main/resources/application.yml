@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: pro
+  application:
+    name: order-discovery-2
+  cloud:
+    nacos:
+      discovery:
+        service: order-provider
+server:
+  port: 8082
+  servlet:
+    context-path: /order
+
+mybatis:
+  configuration:
+    ### 开启打印sql配置
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

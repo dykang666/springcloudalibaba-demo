@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: customer-service
+  cloud:
+    nacos:
+      config:
+        enabled: true # 如果不想使用 Nacos 进行配置管理，设置为 false 即可
+        server-addr: 127.0.0.1:8848
+        group: DEFAULT_GROUP # 组，默认为 DEFAULT_GROUP
+        file-extension: yaml
+        username: nacos
+        password: 123@#nacos
+        #namespace: 9dd1df8b-9afa-4bb4-b1ff-957a5811f3e5 # 对应 dev 环境
+        refresh-enabled: true
+        extension-configs:
+          - data-id: customer-service-nacos-config2
+            refresh: true
+            group: DEFAULT_GROUP
+
+
+
+
+
+

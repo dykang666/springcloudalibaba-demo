@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: seata-order-service
+  profiles:
+    active: dev
+server:
+  port: 9092
+  servlet:
+    context-path: /seata-order-service
+#feign????
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 600000
+        readTimeout: 600000
+
+

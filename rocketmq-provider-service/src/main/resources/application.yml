@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: rockermq-provider-service
+  profiles:
+    active: dev
+server:
+  port: 8097
+logging:
+  file:
+    name: F:\DemoWorkSpace\springcloudalibaba\rockermq-provider-service\src\main\logs\rockermq-provider-service.log
+  level:
+    root: info
+

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: seata-account-service
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+server:
+  port: 9094
+  servlet:
+    context-path: /seata-account-service
+

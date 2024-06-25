@@ -1,0 +1,7 @@
+spring:
+  application:
+     name: nginx-server2
+  profiles:
+       active: pro
+server:
+  port: 5053
